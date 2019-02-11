@@ -68,8 +68,8 @@ public class MenuView {
 
     public void waitTilEnter() {
         Scanner scanner = new Scanner(System.in);
-        if(scanner.hasNext()) {
-            scanner.next();
+        if(scanner.hasNextLine()) {
+            scanner.nextLine();
         }
     }
 }

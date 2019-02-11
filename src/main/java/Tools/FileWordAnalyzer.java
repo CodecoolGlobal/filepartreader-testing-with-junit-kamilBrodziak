@@ -15,7 +15,7 @@ public class FileWordAnalyzer {
         List<String> words = Arrays.asList(readFile.split(" "));
         Set<String> set = new LinkedHashSet<>();
         set.addAll(words);
-        words.clear();
+        words = new ArrayList<>();
         words.addAll(set);
         words.sort(Comparator.naturalOrder());
         return words;

@@ -25,7 +25,8 @@ public class MainController {
             menuView.clearScreen();
             menuView.printMenu();
             try {
-                runChoice(menuView.getMenuChoice());
+                option = menuView.getMenuChoice();
+                runChoice(option);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -33,31 +34,32 @@ public class MainController {
     }
 
     public void runChoice(int option) throws FileNotFoundException {
-        int[] linesFromTo = {0, 0};
-        if(option != 1) {
+        int[] linesFromTo = {1, 2};
+        if(option > 1) {
             linesFromTo = menuView.getLineFromTo();
+            filePartReader.setup(menuView.getFilePath(), linesFromTo[0], linesFromTo[1]);
+        } else if(option == 1){
             filePartReader.setup(menuView.getFilePath(), linesFromTo[0], linesFromTo[1]);
         }
 
-        filePartReader.setup(menuView.getFilePath(), linesFromTo[0], linesFromTo[1]);
         switch (option) {
             case 1:
-                filePartReader.read();
+                System.out.println(filePartReader.read());
                 break;
             case 2:
-
-                filePartReader.readLines();
+                System.out.println(linesFromTo[0] + " " + linesFromTo[1]);
+                System.out.println(filePartReader.readLines());
                 break;
             case 3:
-                fileWordAnalyzer.getWordsOrderedAlphabetically();
+                System.out.println(fileWordAnalyzer.getWordsOrderedAlphabetically());
                 break;
             case 4:
-                fileWordAnalyzer.getWordsContainingSubstring(menuView.getSubstring());
+                System.out.println(fileWordAnalyzer.getWordsContainingSubstring(menuView.getSubstring()));
                 break;
             case 5:
-                fileWordAnalyzer.getStringsWhichPalindromes();
+                System.out.println(fileWordAnalyzer.getStringsWhichPalindromes());
                 break;
         }
-        menuView.getMenuChoice();
+        menuView.waitTilEnter();
     }
 }

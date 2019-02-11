@@ -30,7 +30,7 @@ public class FilePartReader {
         String output = "";
 
         while(scanner.hasNextLine()) {
-            output += scanner.next();
+            output += scanner.nextLine() + "\n";
         }
 
         return output;
@@ -44,12 +44,13 @@ public class FilePartReader {
         int i = 1;
         while(scanner.hasNextLine()) {
             if(i >= fromLine && i <= toLine) {
-                output += scanner.nextLine();
+                output += scanner.nextLine() + "\n";
             } else if(i < fromLine) {
                 scanner.nextLine();
             } else if(i > toLine) {
                 break;
             }
+            i++;
         }
 
         return output;
