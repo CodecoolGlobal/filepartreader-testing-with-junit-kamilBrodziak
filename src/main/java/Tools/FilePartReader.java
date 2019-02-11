@@ -15,7 +15,7 @@ public class FilePartReader {
         toLine = -2;
     }
 
-    public void setup(String filePath, int fromLine, int toLine) {
+    public void setup(String filePath, int fromLine, int toLine){
         this.filePath = filePath;
         if(toLine < fromLine || fromLine < 1) {
             throw new IllegalArgumentException();
@@ -56,8 +56,11 @@ public class FilePartReader {
         return output;
     }
 
-    private File getFile() {
+    private File getFile() throws FileNotFoundException{
         ClassLoader classLoader = getClass().getClassLoader();
+        if(classLoader.getResource(filePath) == null) {
+            throw new FileNotFoundException();
+        }
         return new File(classLoader.getResource(filePath).getFile());
     }
 }
