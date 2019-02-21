@@ -11,7 +11,7 @@ public class FileWordAnalyzer {
     }
 
     public List<String> getWordsOrderedAlphabetically() throws FileNotFoundException {
-        String readFile = filePartReader.readLines().toLowerCase().replaceAll("\n",  " ");
+        String readFile = filePartReader.readLines().toLowerCase().replaceAll("\n",  " ").replaceAll("[ ]+", " ");
         List<String> words = Arrays.asList(readFile.split(" "));
         Set<String> set = new LinkedHashSet<>();
         set.addAll(words);
